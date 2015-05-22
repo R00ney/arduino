@@ -5,7 +5,7 @@
 WiiChuck chuck = WiiChuck();
 
 void setup() {
-  //nunchuck_init();
+  //nunchuck_init();  
   Serial.begin(115200);
   chuck.begin();
   chuck.update();
