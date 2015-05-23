@@ -8,6 +8,7 @@
 #define MAXANGLE 90
 #define MINANGLE -90
 
+#define debug false
 
 unsigned long old_time;
 unsigned long new_time;
@@ -29,31 +30,31 @@ void setup() {
 
 void loop() {
   delay(20);
-  new_time = millis();
+  if(debug) new_time = millis();
   chuck.update(); 
 
-  Serial.print("roll ");
+  if(debug) Serial.print("roll ");
   Serial.print(chuck.readRoll());
   Serial.print(", ");
-  Serial.print("pitch ");  
+  if(debug) Serial.print("pitch ");  
   Serial.print(chuck.readPitch());
   Serial.print(", ");  
   
-  Serial.print("accX ");
+  if(debug) Serial.print("accX ");
   Serial.print((int)chuck.readAccelX()); 
   Serial.print(", ");  
-  Serial.print("accY ");
+  if(debug) Serial.print("accY ");
   Serial.print((int)chuck.readAccelY()); 
   Serial.print(", ");  
   
-  Serial.print("accZ ");
+  if(debug) Serial.print("accZ ");
   Serial.print((int)chuck.readAccelZ()); 
   Serial.print(", "); 
 
-  Serial.print("joyX ");
+  if(debug) Serial.print("joyX ");
   Serial.print(chuck.readJoyX());
     Serial.print(", ");
-  Serial.print("accY ");  
+  if(debug) Serial.print("accY ");  
   Serial.print(chuck.readJoyY());
     Serial.print(", ");  
 
@@ -73,11 +74,12 @@ void loop() {
   }
 
 
-    //print time diff of loop
-   Serial.print(", dT ");
-   old_time = millis();
-   Serial.print( old_time - new_time);
-   
+    if(debug) {  
+      //print time diff of loop
+     Serial.print(", dT ");
+     old_time = millis();
+     Serial.print( old_time - new_time);
+    }
 
     Serial.println();
 }
