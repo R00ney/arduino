@@ -1,13 +1,12 @@
 //Neal O'Hara   May 2015
 // wii nunchuck code
+// nunchuck class
 // demonstrates the roll and pitch in one window
 // and the z, c, and joystick in another
+// and the x, y, z accell in another
 
 
-/*
-* Neal O'Hara May 2015
-* demo to construct animated drawing of nunchuck
-*/
+
 
 //for second frame
 import javax.swing.*; 
@@ -30,8 +29,7 @@ Serial myPort;                // The serial port
 int BAUDRATE = 115200; 
 char DELIM = ','; // the delimeter for parsing incoming data
 
-
-
+//Nunchuck chuck;
 
 
 void setup()
@@ -40,6 +38,9 @@ void setup()
   colorMode(RGB,1);
   background(1);
   frameRate(30);
+  
+//  chuck = new Nunchuck();
+  
   PFrame f = new PFrame(width, height);
   frame.setTitle(" roll pitch yaw");
   f.setTitle(" buttons  joystick");
@@ -86,7 +87,7 @@ void draw()
     
     println(int(sensorValues[5] )- int(zeroJoyX));
     xPos = int(sensorValues[5] - zeroJoyX);
-    yPos = int(sensorValues[6] - zeroJoyY);
+    yPos = int(-(sensorValues[6] - zeroJoyY));
     
     s.setState(zPress, cPress, xPos, yPos);
    
@@ -346,7 +347,9 @@ void customize(DropdownList ddl) {
   ddl.setBarHeight(15);
   ddl.getCaptionLabel().set("Serial");
   for (int i=0;i<len;i++) {
-    ddl.addItem(Serial.list()[i], i);
+    String next = Serial.list()[i];
+    if( next.indexOf("USB") > 0 )   //only list availible USB ports
+      ddl.addItem(next , i);
   }
   //ddl.scroll(0);
   ddl.setColorBackground(color(60));
@@ -446,4 +449,24 @@ void serialEvent(Serial myPort) {
 }
 
 
+
+
+//======================================================================================
+// Nunchuck Class
+//
+//public class void Nunchuck {
+//  public num_sensors = 9;
+//  public int [] values;
+//  public int [] zeros;
+//  public void init()
+//  {
+//   for(int i = 0; i < num_sensors; i++){
+//     values[i] = 0;
+//     zeros[i] = 0;  
+//   } 
+//   
+//  }//end init 
+//  
+//  
+//}
 

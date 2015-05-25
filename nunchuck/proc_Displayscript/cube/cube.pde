@@ -49,10 +49,10 @@ void draw()
     background(0.5, 0.5, 0.45);
   
     animate_nunchuck();
-    
-    buttC(false);
-    buttZ(true);
-    joystick( 0, 0);
+//    
+//    buttC(false);
+//    buttZ(true);
+//    joystick( 0, 0);
   }
 
 }
