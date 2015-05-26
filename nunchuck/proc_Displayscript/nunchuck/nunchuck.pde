@@ -29,7 +29,7 @@ Serial myPort;                // The serial port
 int BAUDRATE = 115200; 
 char DELIM = ','; // the delimeter for parsing incoming data
 
-//Nunchuck chuck;
+WiiNunchuck chuck;
 
 
 void setup()
@@ -39,7 +39,7 @@ void setup()
   background(1);
   frameRate(30);
   
-//  chuck = new Nunchuck();
+  chuck = new WiiNunchuck();
   
   PFrame f = new PFrame(width, height);
   frame.setTitle(" roll pitch yaw");
@@ -453,20 +453,31 @@ void serialEvent(Serial myPort) {
 
 //======================================================================================
 // Nunchuck Class
-//
-//public class void Nunchuck {
-//  public num_sensors = 9;
-//  public int [] values;
-//  public int [] zeros;
-//  public void init()
-//  {
-//   for(int i = 0; i < num_sensors; i++){
-//     values[i] = 0;
-//     zeros[i] = 0;  
-//   } 
-//   
-//  }//end init 
-//  
-//  
-//}
+
+public class  WiiNunchuck {
+   int num_sensors = 9;
+   int [] values;
+   int [] zeros;
+  public void init()
+  {
+   for(int i = 0; i < num_sensors; i++){
+     values[i] = 0;
+     zeros[i] = 0;  
+   } 
+   
+  }//end init 
+  
+  public void setZeros()
+  {
+   for(int i = 0; i < num_sensors; i++){
+     zeros[i] = values[i];  
+   } 
+  }
+  
+  public void sensorValue(int val, int i){
+    values[i] = val;
+  }
+}
+
+
 
