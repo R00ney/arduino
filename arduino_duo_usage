@@ -1,0 +1,11 @@
+Settings for using duemilanove on new ubuntu
+
+First Time Only:
+$ sudo usermod -a -G dialout <username>
+$ sudo chmod a+rw /dev/ttyUSB0
+
+Every Upload:
+Tools> Boad> Arduino Duemilanove or Deicimila
+Tools> Processor > ATmega168
+Tools> Port> /dev/ttyUSB0
+
